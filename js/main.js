@@ -71,12 +71,18 @@ Main.prototype = {
 	var music1;
 	var music2;
 	var music3;
+	var music4;
+	var music5;
+	var music6;
 	
-	number = random(1,3);
+	number = random(1,5);
 
 	music1 = game.add.audio('music1');
 	music2 = game.add.audio('music2');
 	music3 = game.add.audio('music3');
+	music4 = game.add.audio('music4');
+	music5 = game.add.audio('music5');
+	music6 = game.add.audio('music6');
 	
 
 	switch(number){
@@ -88,6 +94,15 @@ Main.prototype = {
 			break;
 		case 3:
 			music3.play();
+			break;
+		case 4:
+			music4.play();
+			break;
+		case 5:
+			music5.play();
+			break;
+		case 6:
+			music6.play();
 			break;
 		default:
 			music1.play();
@@ -129,6 +144,7 @@ Main.prototype = {
  
     //Check if the player is touching the bottom
     if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
+		game.sound.stopAll();
         me.gameOver();
     }
 	
