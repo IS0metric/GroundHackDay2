@@ -74,8 +74,9 @@ Main.prototype = {
 	var music4;
 	var music5;
 	var music6;
+	var music7;
 	
-	number = random(1,5);
+	number = random(1,7);
 
 	music1 = game.add.audio('music1');
 	music2 = game.add.audio('music2');
@@ -83,6 +84,7 @@ Main.prototype = {
 	music4 = game.add.audio('music4');
 	music5 = game.add.audio('music5');
 	music6 = game.add.audio('music6');
+	music7 = game.add.audio('music7');
 	
 
 	switch(number){
@@ -103,6 +105,9 @@ Main.prototype = {
 			break;
 		case 6:
 			music6.play();
+			break;
+		case 7:
+			music7.play();
 			break;
 		default:
 			music1.play();
