@@ -3,7 +3,10 @@ var Main = function(game){
 };
 
 Main.prototype = {
+	
 
+	
+	
 	create: function() {
 	
 	var me = this;
@@ -30,7 +33,8 @@ Main.prototype = {
     me.platforms.enableBody = true;
     me.platforms.createMultiple(250, 'tile');
     
-    me.timer = game.time.events.loop(4000, me.addPlatform, me);
+    me.timer = game.time.events.loop(6000, me.addPlatform, me);
+	me.timer = game.time.events.loop(5000, me.addBlocks, me);
 	
 	//Create the inital on screen platforms
 	me.initPlatforms();
@@ -45,16 +49,51 @@ Main.prototype = {
 	 
 	//Create the score label
 	me.createScore();
+	
+	blocks = game.add.group(); // BLOCKS
+
+	blocks.enableBody = true;
+	
+	blocks2 = game.add.group(); // BLOCKS 2
+
+	blocks2.enableBody = true;
+	
+	blocks3 = game.add.group(); // BLOCKS 3
+
+	blocks3.enableBody = true;
+	
+	
+
  
   },
 
 	update: function() {
  
     var me = this;
- 
+
     //Make the sprite collide with the ground layer
     me.game.physics.arcade.collide(me.player, me.platforms);
- 
+	game.physics.arcade.collide(blocks, me.platforms);
+	game.physics.arcade.collide(blocks2, me.platforms);
+	game.physics.arcade.collide(blocks3, me.platforms);
+	game.physics.arcade.overlap(me.player, blocks, hitBlock, null, this);
+	game.physics.arcade.overlap(blocks2, me.player, hitBlock2, null, this);
+	game.physics.arcade.overlap(me.player, blocks3, hitBlock3, null, this);
+	
+	
+	function hitBlock(block) {
+		block.kill();
+		me.gameOver();
+	}
+	function hitBlock2(block2) {
+		block2.kill();
+		me.gameOver();
+	}
+	function hitBlock3(block3) {
+		block3.kill();
+		me.gameOver();
+	}
+
  
     //Check if the player is touching the bottom
     if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
@@ -77,6 +116,8 @@ Main.prototype = {
 	}
  
 	},
+	
+
 	gameOver: function(){
     this.game.state.start('Main');
 	},
@@ -99,7 +140,7 @@ Main.prototype = {
     tile.outOfBoundsKill = true;    
   },
  
-  addPlatform: function(y){
+ addPlatform: function(y){
  
     var me = this;
  
@@ -124,6 +165,60 @@ Main.prototype = {
       }           
     }
   },
+ 
+addBlocks: function(){
+	for (var i = 0; i < 6; i++)
+	{
+		//  Create a block inside of the 'blocks' group
+		var block = blocks.create(i * (Math.random()*300), 0, 'block');
+
+		//  Let gravity do its thing
+		block.body.gravity.y = 500 *Math.random();
+		
+		//collision
+		block.body.collideWorldBounds = false;
+
+		//  This just gives each block a slightly random bounce value 0.8 + Math.random() * 0.2;
+		block.body.bounce.y = 1;	
+	
+
+	}
+		
+	for (var i = 0; i < 6; i++)
+	{
+		//  Create a block inside of the 'blocks' group
+		var block2 = blocks2.create(i * (Math.random()*300) , 0, 'block2');
+
+		//  Let gravity do its thing
+		block2.body.gravity.y = 500 *Math.random();
+		
+		//collision
+		block2.body.collideWorldBounds = false;
+
+		//  This just gives each block a slightly random bounce value 0.8 + Math.random() * 0.2;
+		block2.body.bounce.y = 1;
+
+	}
+		
+	//  Here we'll create 7 of them evenly spaced apart
+	for (var i = 0; i < 6; i++)
+	{
+		//  Create a block inside of the 'blocks' group
+		var block3 = blocks3.create(i * ( Math.random()*300), 0, 'block3');
+
+		//  Let gravity do its thing
+		block3.body.gravity.y = 500 *Math.random();
+		
+		//collision
+		block3.body.collideWorldBounds = false;
+
+		//  This just gives each block a slightly random bounce value 0.8 + Math.random() * 0.2;
+		block3.body.bounce.y = 1;	
+	
+
+	}
+},
+ 
 	
 initPlatforms: function(){
  
@@ -171,6 +266,7 @@ createScore: function(){
     me.scoreLabel.align = 'center';
  
 },
+
  
 incrementScore: function(){
  
@@ -180,6 +276,6 @@ incrementScore: function(){
     me.scoreLabel.text = me.score;      
  
 },
-  
+
 
 };
