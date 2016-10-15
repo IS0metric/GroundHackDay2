@@ -63,12 +63,35 @@ Main.prototype = {
 
 	blocks3.enableBody = true;
 	
+	var random = function(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+    };  
 	
+	var number;
 	var music1;
+	var music2;
+	var music3;
+	
+	number = random(1,3);
 
 	music1 = game.add.audio('music1');
+	music2 = game.add.audio('music2');
+	music3 = game.add.audio('music3');
 	
-	music1.play();
+
+	switch(number){
+		case 1:
+			music1.play();
+			break;
+		case 2:
+			music2.play();
+			break;
+		case 3:
+			music3.play();
+			break;
+		default:
+			music1.play();
+}
  
   },
 
