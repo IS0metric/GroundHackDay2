@@ -24,6 +24,8 @@ Main.prototype = {
  
     //Set the background colour to blue
     me.game.stage.backgroundColor = '479cde';
+	bg = game.add.tileSprite(0, 0, 1920, 1080, 'background');
+    bg.fixedToCamera = true;
  
     //Enable the Arcade physics system
     me.game.physics.startSystem(Phaser.Physics.ARCADE);
