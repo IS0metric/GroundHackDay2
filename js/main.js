@@ -5,7 +5,7 @@ var Main = function(game){
 Main.prototype = {
 	
 
-	
+
 	
 	create: function() {
 	
@@ -64,8 +64,6 @@ Main.prototype = {
 
 	blocks3.enableBody = true;
 	
-	
-
  
   },
 
@@ -126,7 +124,8 @@ Main.prototype = {
 	
 
 	gameOver: function(){
-    this.game.state.start('Main');
+		var me = this;
+		this.game.state.start('GameOver');
 	},
 
 	
