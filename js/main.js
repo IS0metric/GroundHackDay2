@@ -45,11 +45,18 @@ Main.prototype = {
 	
 	me.cursors = me.game.input.keyboard.createCursorKeys();
 	
+    var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+
+    //  The Text is positioned at 0, 100
+    text = game.add.text(0, 0, "Get in cyber space go there do it - The Game", style);
+
+
 	//Create the score variable
 	me.score = 0;
 	 
 	//Create the score label
 	me.createScore();
+
 	
 	blocks = game.add.group(); // BLOCKS
 
