@@ -8,7 +8,7 @@ Main.prototype = {
 	
 	var me = this;
 	//The spacing for the initial platforms
-	me.spacing = 200;
+	me.spacing = 500;
  
 
     //Get the dimensions of the tile we are using
@@ -30,21 +30,57 @@ Main.prototype = {
     me.platforms.enableBody = true;
     me.platforms.createMultiple(250, 'tile');
     
-    me.timer = game.time.events.loop(2000, me.addPlatform, me);
+    me.timer = game.time.events.loop(4000, me.addPlatform, me);
 	
 	//Create the inital on screen platforms
 	me.initPlatforms();
- 
+	
+	//Add the player to the screen
+	me.createPlayer();
+	
+	me.cursors = me.game.input.keyboard.createCursorKeys();
+	
+	//Create the score variable
+	me.score = 0;
+	 
+	//Create the score label
+	me.createScore();
  
   },
 
 	update: function() {
-
+ 
+    var me = this;
+ 
+    //Make the sprite collide with the ground layer
+    me.game.physics.arcade.collide(me.player, me.platforms);
+ 
+ 
+    //Check if the player is touching the bottom
+    if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
+        me.gameOver();
+    }
+	
+	
+	//Make the player go left
+	if(me.cursors.left.isDown){
+		me.player.body.velocity.x = -400;
+	} else if (me.cursors.right.isDown){
+		me.player.body.velocity.x = 400;
+	} else if (me.cursors.up.isDown) {
+		me.player.body.velocity.y = -400;
+	} else if (me.cursors.down.isDown) {
+		me.player.body.velocity.y = 400;
+	} else{
+		me.player.body.velocity.x = 0;
+		me.player.body.velocity.y = 0;
+	}
+ 
 	},
-
 	gameOver: function(){
-		this.game.state.start('GameOver');
+    this.game.state.start('Main');
 	},
+
 	
 	addTile: function(x, y){
  
@@ -70,6 +106,8 @@ Main.prototype = {
     //If no y position is supplied, render it just outside of the screen
     if(typeof(y) == "undefined"){
       y = -me.tileHeight;
+	  //increase score
+	  me.incrementScore();
     }
  
     //Work out how many tiles we need to fit across the whole screen
@@ -98,8 +136,50 @@ initPlatforms: function(){
         me.addPlatform(y);
     }
  
-}
-  
+},
+
+createPlayer: function(){
+ 
+    var me = this;
+ 
+    //Add the player to the game by creating a new sprite
+    me.player = me.game.add.sprite(me.game.world.centerX, me.game.world.height - (me.spacing * 2 + (3 * me.tileHeight)), 'player');
+ 
+    //Set the players anchor point to be in the middle horizontally
+    me.player.anchor.setTo(0.5, 1.0);
+ 
+    //Enable physics on the player
+    me.game.physics.arcade.enable(me.player);
+ 
+    //Make the player fall by applying gravity
+    me.player.body.gravity.y = 0;
+ 
+    //Make the player collide with the game boundaries 
+    me.player.body.collideWorldBounds = true;
+ 
+ 
+},
+ 
+createScore: function(){
+ 
+    var me = this;
+ 
+    var scoreFont = "100px Arial";
+ 
+    me.scoreLabel = me.game.add.text((me.game.world.centerX), 100, "0", {font: scoreFont, fill: "#fff"}); 
+    me.scoreLabel.anchor.setTo(0.5, 0.5);
+    me.scoreLabel.align = 'center';
+ 
+},
+ 
+incrementScore: function(){
+ 
+    var me = this;
+ 
+    me.score += 1;   
+    me.scoreLabel.text = me.score;      
+ 
+},
   
 
 };
