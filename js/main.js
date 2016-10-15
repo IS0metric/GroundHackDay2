@@ -5,7 +5,6 @@ var Main = function(game){
 Main.prototype = {
 	
 
-
 	
 	create: function() {
 	
@@ -64,6 +63,12 @@ Main.prototype = {
 
 	blocks3.enableBody = true;
 	
+	
+	var music1;
+
+	music1 = game.add.audio('music1');
+	
+	music1.play();
  
   },
 
@@ -283,7 +288,11 @@ incrementScore: function(){
     var me = this;
  
     me.score += 1;   
-    me.scoreLabel.text = me.score;      
+    me.scoreLabel.text = me.score;    
+	
+	var coin;
+	coin = game.add.audio('coin');
+	coin.play();	
  
 },
 
