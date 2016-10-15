@@ -216,7 +216,7 @@ addBlocks: function(){
 	}
 		
 	//  Here we'll create 7 of them evenly spaced apart
-	for (var i = 0; i < 6; i++)
+	for (var i = 0; i < 4; i++)
 	{
 		//  Create a block inside of the 'blocks' group
 		var block3 = blocks3.create(i * ( Math.random()*300), 0, 'block3');
