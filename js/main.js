@@ -5,12 +5,19 @@ var Main = function(game){
 Main.prototype = {
 
 	create: function() {
+	
+	var me = this;
+	//The spacing for the initial platforms
+	me.spacing = 200;
  
-    var me = this;
- 
+
     //Get the dimensions of the tile we are using
     me.tileWidth = me.game.cache.getImage('tile').width;
     me.tileHeight = me.game.cache.getImage('tile').height;
+	
+
+
+ 
  
     //Set the background colour to blue
     me.game.stage.backgroundColor = '479cde';
@@ -24,6 +31,10 @@ Main.prototype = {
     me.platforms.createMultiple(250, 'tile');
     
     me.timer = game.time.events.loop(2000, me.addPlatform, me);
+	
+	//Create the inital on screen platforms
+	me.initPlatforms();
+ 
  
   },
 
@@ -74,9 +85,20 @@ Main.prototype = {
         this.addTile(i * me.tileWidth, y); 
       }           
     }
-  }
+  },
 	
-	
+initPlatforms: function(){
+ 
+    var me = this,
+        bottom = me.game.world.height - me.tileHeight,
+        top = me.tileHeight;
+ 
+    //Keep creating platforms until they reach (near) the top of the screen
+    for(var y = bottom; y > top - me.tileHeight; y = y - me.spacing){
+        me.addPlatform(y);
+    }
+ 
+}
   
   
 
