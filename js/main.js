@@ -103,14 +103,19 @@ Main.prototype = {
 	
 	//Make the player go left
 	if(me.cursors.left.isDown){
+	  me.player.animations.play('left');
 		me.player.body.velocity.x = -400;
 	} else if (me.cursors.right.isDown){
+	me.player.animations.play('right');
 		me.player.body.velocity.x = 400;
 	} else if (me.cursors.up.isDown) {
+	me.player.animations.play('turn');
 		me.player.body.velocity.y = -400;
 	} else if (me.cursors.down.isDown) {
+	me.player.animations.play('turn');
 		me.player.body.velocity.y = 400;
 	} else{
+	me.player.animations.play('turn');
 		me.player.body.velocity.x = 0;
 		me.player.body.velocity.y = 0;
 	}
@@ -239,6 +244,10 @@ createPlayer: function(){
  
     //Add the player to the game by creating a new sprite
     me.player = me.game.add.sprite(me.game.world.centerX, me.game.world.height - (me.spacing * 2 + (3 * me.tileHeight)), 'player');
+    
+    me.player.animations.add('left', [0, 1, 2], 2, true);
+    me.player.animations.add('turn', [3, 4, 5], 1, true);
+    me.player.animations.add('right', [6, 7, 8], 2, true);
  
     //Set the players anchor point to be in the middle horizontally
     me.player.anchor.setTo(0.5, 1.0);

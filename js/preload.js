@@ -3,12 +3,8 @@ var Preload = function(game){};
 Preload.prototype = {
 
 	preload: function(){
-	this.game.load.image('tile', 'assets/tile.png'); 
-    this.game.load.image('player', 'assets/player.png');
-	
-    game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-	game.load.image('tiles-1', 'assets/tiles-1a.png');
-	game.load.spritesheet('dude', 'assets/sprite-3.png', 52, 58);
+	game.load.image('tile', 'assets/tile3.png');
+	game.load.spritesheet('player', 'assets/spriteOctocat.png', 52, 58);
 	game.load.image('block', 'assets/block.png');
 	game.load.image('block2', 'assets/block2.png');
 	game.load.image('block3', 'assets/block3.png');
