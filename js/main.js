@@ -88,14 +88,18 @@ Main.prototype = {
 	
 	function hitBlock(block) {
 		block.kill();
+		game.sound.stopAll();
 		me.gameOver();
+		
 	}
 	function hitBlock2(block2) {
 		block2.kill();
+		game.sound.stopAll(); 
 		me.gameOver();
 	}
 	function hitBlock3(block3) {
 		block3.kill();
+		game.sound.stopAll(); 
 		me.gameOver();
 	}
 
