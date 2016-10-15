@@ -239,7 +239,7 @@ addBlocks: function(){
 		var block = blocks.create(i * (Math.random()*300), 0, 'block');
 
 		//  Let gravity do its thing
-		block.body.gravity.y = 500 *Math.random();
+		block.body.gravity.y = 200 + 400 *Math.random();
 		
 		//collision
 		block.body.collideWorldBounds = false;
@@ -256,7 +256,7 @@ addBlocks: function(){
 		var block2 = blocks2.create(i * (Math.random()*300) , 0, 'block2');
 
 		//  Let gravity do its thing
-		block2.body.gravity.y = 500 *Math.random();
+		block2.body.gravity.y = 200 + 400 *Math.random();
 		
 		//collision
 		block2.body.collideWorldBounds = false;
@@ -273,7 +273,7 @@ addBlocks: function(){
 		var block3 = blocks3.create(i * ( Math.random()*300), 0, 'block3');
 
 		//  Let gravity do its thing
-		block3.body.gravity.y = 500 *Math.random();
+		block3.body.gravity.y = 200 + 400 *Math.random();
 		
 		//collision
 		block3.body.collideWorldBounds = false;
