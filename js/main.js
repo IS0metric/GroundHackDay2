@@ -55,7 +55,7 @@ Main.prototype = {
     me.platforms6.createMultiple(250, 'tile6');
     
     me.timer = game.time.events.loop(6000, me.addPlatformx, me);
-	me.timer = game.time.events.loop(5000, me.addBlocks, me);
+	me.timer = game.time.events.loop(2500, me.addBlocks, me);
 	
 	//Create the inital on screen platforms
 	me.initPlatforms();
@@ -523,10 +523,10 @@ addPlatformx: function(y){
 	  },
 	  
 addBlocks: function(){
-	for (var i = 0; i < 6; i++)
+	for (var i = 0; i < 5; i++)
 	{
 		//  Create a block inside of the 'blocks' group
-		var block = blocks.create(i * (Math.random()*300), 0, 'block');
+		var block = blocks.create(i * (Math.random()*2000), 0, 'block');
 
 		//  Let gravity do its thing
 		block.body.gravity.y = 200 + 400 *Math.random();
@@ -540,10 +540,10 @@ addBlocks: function(){
 
 	}
 		
-	for (var i = 0; i < 6; i++)
+	for (var i = 0; i < 5; i++)
 	{
 		//  Create a block inside of the 'blocks' group
-		var block2 = blocks2.create(i * (Math.random()*300) , 0, 'block2');
+		var block2 = blocks2.create(i * (Math.random()*2000) , 0, 'block2');
 
 		//  Let gravity do its thing
 		block2.body.gravity.y = 200 + 400 *Math.random();
@@ -560,7 +560,7 @@ addBlocks: function(){
 	for (var i = 0; i < 4; i++)
 	{
 		//  Create a block inside of the 'blocks' group
-		var block3 = blocks3.create(i * ( Math.random()*300), 0, 'block3');
+		var block3 = blocks3.create(i * ( Math.random()*2000), 0, 'block3');
 
 		//  Let gravity do its thing
 		block3.body.gravity.y = 200 + 400 *Math.random();
