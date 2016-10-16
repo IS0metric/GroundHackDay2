@@ -14,8 +14,8 @@ Main.prototype = {
  
 
     //Get the dimensions of the tile we are using
-    me.tileWidth = me.game.cache.getImage('tile').width;
-    me.tileHeight = me.game.cache.getImage('tile').height;
+    me.tileWidth = me.game.cache.getImage('tile1').width;
+    me.tileHeight = me.game.cache.getImage('tile1').height;
 	
 
 
@@ -32,9 +32,29 @@ Main.prototype = {
     //Add a platforms group to hold all of our tiles, and create a bunch of them
     me.platforms = me.game.add.group();
     me.platforms.enableBody = true;
-    me.platforms.createMultiple(250, 'tile');
+    me.platforms.createMultiple(250, 'tile1');
+	
+	me.platforms2 = me.game.add.group();
+    me.platforms2.enableBody = true;
+    me.platforms2.createMultiple(250, 'tile2');
+	
+	me.platforms3 = me.game.add.group();
+    me.platforms3.enableBody = true;
+    me.platforms3.createMultiple(250, 'tile3');
+	
+	me.platforms4 = me.game.add.group();
+    me.platforms4.enableBody = true;
+    me.platforms4.createMultiple(250, 'tile4');
+	
+	me.platforms5 = me.game.add.group();
+    me.platforms5.enableBody = true;
+    me.platforms5.createMultiple(250, 'tile5');
+	
+	me.platforms6 = me.game.add.group();
+    me.platforms6.enableBody = true;
+    me.platforms6.createMultiple(250, 'tile6');
     
-    me.timer = game.time.events.loop(6000, me.addPlatform, me);
+    me.timer = game.time.events.loop(6000, me.addPlatformx, me);
 	me.timer = game.time.events.loop(5000, me.addBlocks, me);
 	
 	//Create the inital on screen platforms
@@ -128,9 +148,29 @@ Main.prototype = {
 
     //Make the sprite collide with the ground layer
     me.game.physics.arcade.collide(me.player, me.platforms);
+	me.game.physics.arcade.collide(me.player, me.platforms2);
+	me.game.physics.arcade.collide(me.player, me.platforms3);
+	me.game.physics.arcade.collide(me.player, me.platforms4);
+	me.game.physics.arcade.collide(me.player, me.platforms5);
+	me.game.physics.arcade.collide(me.player, me.platforms6);
 	game.physics.arcade.collide(blocks, me.platforms);
 	game.physics.arcade.collide(blocks2, me.platforms);
 	game.physics.arcade.collide(blocks3, me.platforms);
+	game.physics.arcade.collide(blocks, me.platforms2);
+	game.physics.arcade.collide(blocks2, me.platforms2);
+	game.physics.arcade.collide(blocks3, me.platforms2);
+	game.physics.arcade.collide(blocks, me.platforms3);
+	game.physics.arcade.collide(blocks2, me.platforms3);
+	game.physics.arcade.collide(blocks3, me.platforms3);
+	game.physics.arcade.collide(blocks, me.platforms4);
+	game.physics.arcade.collide(blocks2, me.platforms4);
+	game.physics.arcade.collide(blocks3, me.platforms4);
+	game.physics.arcade.collide(blocks, me.platforms5);
+	game.physics.arcade.collide(blocks2, me.platforms5);
+	game.physics.arcade.collide(blocks3, me.platforms5);
+	game.physics.arcade.collide(blocks, me.platforms6);
+	game.physics.arcade.collide(blocks2, me.platforms6);
+	game.physics.arcade.collide(blocks3, me.platforms6);
 	game.physics.arcade.overlap(me.player, blocks, hitBlock, null, this);
 	game.physics.arcade.overlap(blocks2, me.player, hitBlock2, null, this);
 	game.physics.arcade.overlap(me.player, blocks3, hitBlock3, null, this);
@@ -189,7 +229,8 @@ Main.prototype = {
 	},
 
 	
-	addTile: function(x, y){
+	
+	addTile1: function(x, y){
  
     var me = this;
  
@@ -205,33 +246,282 @@ Main.prototype = {
     tile.checkWorldBounds = true;
     tile.outOfBoundsKill = true;    
   },
- 
- addPlatform: function(y){
+  
+  	addTile2: function(x, y){
  
     var me = this;
  
-    //If no y position is supplied, render it just outside of the screen
-    if(typeof(y) == "undefined"){
-      y = -me.tileHeight;
+    //Get a tile that is not currently on screen
+    var tile2 = me.platforms2.getFirstDead();
+ 
+    //Reset it to the specified coordinates
+    tile2.reset(x, y);
+    tile2.body.velocity.y = 150; 
+    tile2.body.immovable = true;
+ 
+    //When the tile leaves the screen, kill it
+    tile2.checkWorldBounds = true;
+    tile2.outOfBoundsKill = true;    
+  },
+  
+  	addTile3: function(x, y){
+ 
+    var me = this;
+ 
+    //Get a tile that is not currently on screen
+    var tile3 = me.platforms3.getFirstDead();
+ 
+    //Reset it to the specified coordinates
+    tile3.reset(x, y);
+    tile3.body.velocity.y = 150; 
+    tile3.body.immovable = true;
+ 
+    //When the tile leaves the screen, kill it
+    tile3.checkWorldBounds = true;
+    tile3.outOfBoundsKill = true;    
+  },
+  
+  	addTile4: function(x, y){
+ 
+    var me = this;
+ 
+    //Get a tile that is not currently on screen
+    var tile4 = me.platforms4.getFirstDead();
+ 
+    //Reset it to the specified coordinates
+    tile4.reset(x, y);
+    tile4.body.velocity.y = 150; 
+    tile4.body.immovable = true;
+ 
+    //When the tile leaves the screen, kill it
+    tile4.checkWorldBounds = true;
+    tile4.outOfBoundsKill = true;    
+  },
+  
+  
+  	addTile5: function(x, y){
+ 
+    var me = this;
+ 
+    //Get a tile that is not currently on screen
+    var tile5 = me.platforms5.getFirstDead();
+ 
+    //Reset it to the specified coordinates
+    tile5.reset(x, y);
+    tile5.body.velocity.y = 150; 
+    tile5.body.immovable = true;
+ 
+    //When the tile leaves the screen, kill it
+    tile5.checkWorldBounds = true;
+    tile5.outOfBoundsKill = true;    
+  },
+  
+  
+  	addTile6: function(x, y){
+ 
+    var me = this;
+ 
+    //Get a tile that is not currently on screen
+    var tile6 = me.platforms6.getFirstDead();
+ 
+    //Reset it to the specified coordinates
+    tile6.reset(x, y);
+    tile6.body.velocity.y = 150; 
+    tile6.body.immovable = true;
+ 
+    //When the tile leaves the screen, kill it
+    tile6.checkWorldBounds = true;
+    tile6.outOfBoundsKill = true;    
+  },
+  
+addPlatformx: function(y){ 
+	var me = this;
+	var numberx;
+	var random = function(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+    };  
+	numberx = random(1,6);
+	switch(numberx){
+		case 1:
+			me.addPlatform();
+			break;
+		case 2:
+			me.addPlatform2();
+			break;
+		case 3:
+			me.addPlatform3();
+			break;
+		case 4:
+			me.addPlatform4();
+			break;
+		case 5:
+			me.addPlatform5();
+			break;
+		case 6:
+			me.addPlatform6();
+			break;
+		default:
+			me.addPlatform();
+}
+},
+
+	 addPlatform: function(y){
+	 
+		var me = this;
+	 
+		//If no y position is supplied, render it just outside of the screen
+		if(typeof(y) == "undefined"){
+		  y = -me.tileHeight;
+		  //increase score
+		  me.incrementScore();
+		}
+	 
+		//Work out how many tiles we need to fit across the whole screen
+		var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
+	 
+		//Add a hole randomly somewhere
+		var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
+	 
+		//Keep creating tiles next to each other until we have an entire row
+		//Don't add tiles where the random hole is
+		for (var i = 0; i < tilesNeeded; i++){
+		  if (i != hole && i != hole + 1){
+			this.addTile1(i * me.tileWidth, y); 
+		  }           
+		}
+	  },
+	  
+	  
+	 addPlatform2: function(y){
+	 
+		var me = this;
+	 
+		//If no y position is supplied, render it just outside of the screen
+		if(typeof(y) == "undefined"){
+		  y = -me.tileHeight;
+		  //increase score
+		  me.incrementScore();
+		}
+	 
+		//Work out how many tiles we need to fit across the whole screen
+		var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
+	 
+		//Add a hole randomly somewhere
+		var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
+	 
+		//Keep creating tiles next to each other until we have an entire row
+		//Don't add tiles where the random hole is
+		for (var i = 0; i < tilesNeeded; i++){
+		  if (i != hole && i != hole + 1){
+			this.addTile2(i * me.tileWidth, y); 
+		  }           
+		}
+	  },
+	  
+	 addPlatform3: function(y){
+ 
+	var me = this;
+ 
+	//If no y position is supplied, render it just outside of the screen
+	if(typeof(y) == "undefined"){
+	  y = -me.tileHeight;
 	  //increase score
 	  me.incrementScore();
-    }
+	}
  
-    //Work out how many tiles we need to fit across the whole screen
-    var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
+	//Work out how many tiles we need to fit across the whole screen
+	var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
  
-    //Add a hole randomly somewhere
-    var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
+	//Add a hole randomly somewhere
+	var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
  
-    //Keep creating tiles next to each other until we have an entire row
-    //Don't add tiles where the random hole is
-    for (var i = 0; i < tilesNeeded; i++){
-      if (i != hole && i != hole + 1){
-        this.addTile(i * me.tileWidth, y); 
-      }           
-    }
+	//Keep creating tiles next to each other until we have an entire row
+	//Don't add tiles where the random hole is
+	for (var i = 0; i < tilesNeeded; i++){
+	  if (i != hole && i != hole + 1){
+		this.addTile3(i * me.tileWidth, y); 
+	  }           
+	}
   },
+  
+	 addPlatform4: function(y){
+	 
+		var me = this;
+	 
+		//If no y position is supplied, render it just outside of the screen
+		if(typeof(y) == "undefined"){
+		  y = -me.tileHeight;
+		  //increase score
+		  me.incrementScore();
+		}
+	 
+		//Work out how many tiles we need to fit across the whole screen
+		var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
+	 
+		//Add a hole randomly somewhere
+		var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
+	 
+		//Keep creating tiles next to each other until we have an entire row
+		//Don't add tiles where the random hole is
+		for (var i = 0; i < tilesNeeded; i++){
+		  if (i != hole && i != hole + 1){
+			this.addTile4(i * me.tileWidth, y); 
+		  }           
+		}
+	  },
+	  
+	 addPlatform5: function(y){
  
+	var me = this;
+ 
+	//If no y position is supplied, render it just outside of the screen
+	if(typeof(y) == "undefined"){
+	  y = -me.tileHeight;
+	  //increase score
+	  me.incrementScore();
+	}
+ 
+	//Work out how many tiles we need to fit across the whole screen
+	var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
+ 
+	//Add a hole randomly somewhere
+	var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
+ 
+	//Keep creating tiles next to each other until we have an entire row
+	//Don't add tiles where the random hole is
+	for (var i = 0; i < tilesNeeded; i++){
+	  if (i != hole && i != hole + 1){
+		this.addTile5(i * me.tileWidth, y); 
+	  }           
+	}
+  },
+  
+  	 addPlatform6: function(y){
+	 
+		var me = this;
+	 
+		//If no y position is supplied, render it just outside of the screen
+		if(typeof(y) == "undefined"){
+		  y = -me.tileHeight;
+		  //increase score
+		  me.incrementScore();
+		}
+	 
+		//Work out how many tiles we need to fit across the whole screen
+		var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
+	 
+		//Add a hole randomly somewhere
+		var hole = Math.floor(Math.random() * (tilesNeeded - 3)) + 1;
+	 
+		//Keep creating tiles next to each other until we have an entire row
+		//Don't add tiles where the random hole is
+		for (var i = 0; i < tilesNeeded; i++){
+		  if (i != hole && i != hole + 1){
+			this.addTile6(i * me.tileWidth, y); 
+		  }           
+		}
+	  },
+	  
 addBlocks: function(){
 	for (var i = 0; i < 6; i++)
 	{

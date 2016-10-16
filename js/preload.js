@@ -3,7 +3,12 @@ var Preload = function(game){};
 Preload.prototype = {
 
 	preload: function(){
-	game.load.image('tile', 'assets/tile3.png');
+	game.load.image('tile1', 'assets/tile3.png');
+	game.load.image('tile2', 'assets/tile4.png');
+	game.load.image('tile3', 'assets/tile5.png');
+	game.load.image('tile4', 'assets/tile6.png');
+	game.load.image('tile5', 'assets/tile7.png');
+	game.load.image('tile6', 'assets/tile8.png');
 	game.load.spritesheet('player', 'assets/spriteOctocat.png', 52, 58);
 	game.load.image('block', 'assets/block.png');
 	game.load.image('block2', 'assets/block2.png');
