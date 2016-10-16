@@ -13,7 +13,7 @@ Preload.prototype = {
 	game.load.image('block', 'assets/block.png');
 	game.load.image('block2', 'assets/block2.png');
 	game.load.image('block3', 'assets/segFaultSimple.png');
-	game.load.image('background', 'assets/bg3.png');
+	game.load.image('background', 'assets/galaxy.png');
 	game.load.audio('music1', ['assets/audio/music1.mp3', 'assets/audio/music1.ogg']);
 	game.load.audio('music2', ['assets/audio/music2.mp3', 'assets/audio/music2.ogg']);
 	game.load.audio('music3', ['assets/audio/music3.mp3', 'assets/audio/music3.ogg']);
