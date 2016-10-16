@@ -204,16 +204,16 @@ Main.prototype = {
 	//Make the player go left
 	if(me.cursors.left.isDown){
 	  me.player.animations.play('left');
-		me.player.body.velocity.x = -400;
+		me.player.body.velocity.x = -600;
 	} else if (me.cursors.right.isDown){
 	me.player.animations.play('right');
-		me.player.body.velocity.x = 400;
+		me.player.body.velocity.x = 600;
 	} else if (me.cursors.up.isDown) {
 	me.player.animations.play('turn');
-		me.player.body.velocity.y = -400;
+		me.player.body.velocity.y = -600;
 	} else if (me.cursors.down.isDown) {
 	me.player.animations.play('turn');
-		me.player.body.velocity.y = 400;
+		me.player.body.velocity.y = 600;
 	} else{
 	me.player.animations.play('turn');
 		me.player.body.velocity.x = 0;
