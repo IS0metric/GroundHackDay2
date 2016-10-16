@@ -13,7 +13,7 @@ Main.prototype = {
 	me.spacing = 500;
  
 
-    //Get the dimensions of the tile we are using
+    //Get the dimensions of the tiles
     me.tileWidth = me.game.cache.getImage('tile1').width;
     me.tileHeight = me.game.cache.getImage('tile1').height;
 	
@@ -21,7 +21,7 @@ Main.prototype = {
 
  
  
-    //Set the background colour to blue
+    //Set the background colour, background image and camera
     me.game.stage.backgroundColor = '479cde';
 	bg = game.add.tileSprite(0, 0, 1920, 1080, 'background');
     bg.fixedToCamera = true;
@@ -29,7 +29,7 @@ Main.prototype = {
     //Enable the Arcade physics system
     me.game.physics.startSystem(Phaser.Physics.ARCADE);
  
-    //Add a platforms group to hold all of our tiles, and create a bunch of them
+    //Add a platforms group to hold all of our tiles, and create a bunch of them, each group different colour
     me.platforms = me.game.add.group();
     me.platforms.enableBody = true;
     me.platforms.createMultiple(250, 'tile1');
@@ -54,6 +54,7 @@ Main.prototype = {
     me.platforms6.enableBody = true;
     me.platforms6.createMultiple(250, 'tile6');
     
+	//Spawn platforms every 6 seconds, spawn enemies every 2.5 seconds
     me.timer = game.time.events.loop(6000, me.addPlatformx, me);
 	me.timer = game.time.events.loop(2500, me.addBlocks, me);
 	
@@ -63,11 +64,12 @@ Main.prototype = {
 	//Add the player to the screen
 	me.createPlayer();
 	
+	//cursor create
 	me.cursors = me.game.input.keyboard.createCursorKeys();
 	
     var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
 
-    //  The Text is positioned at 0, 100
+    //  The Text is positioned at 0, 100 Game title
     text = game.add.text(0, 0, "Get in cyber space go there do it - The Game", style);
 
 
@@ -78,18 +80,19 @@ Main.prototype = {
 	me.createScore();
 
 	
-	blocks = game.add.group(); // BLOCKS
+	blocks = game.add.group(); // BLOCKS add to group
 
 	blocks.enableBody = true;
 	
-	blocks2 = game.add.group(); // BLOCKS 2
+	blocks2 = game.add.group(); // BLOCKS 2 add to group
 
 	blocks2.enableBody = true;
 	
-	blocks3 = game.add.group(); // BLOCKS 3
+	blocks3 = game.add.group(); // BLOCKS 3 add to group
 
 	blocks3.enableBody = true;
 	
+	//random function for generation
 	var random = function(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
     };  
@@ -103,6 +106,7 @@ Main.prototype = {
 	var music6;
 	var music7;
 	
+	//pick a number between 1 and 7 to select music track
 	number = random(1,7);
 
 	music1 = game.add.audio('music1');
@@ -113,7 +117,7 @@ Main.prototype = {
 	music6 = game.add.audio('music6');
 	music7 = game.add.audio('music7');
 	
-
+	//randomize track
 	switch(number){
 		case 1:
 			music1.play();
@@ -146,7 +150,7 @@ Main.prototype = {
  
     var me = this;
 
-    //Make the sprite collide with the ground layer
+    //Collision statements
     me.game.physics.arcade.collide(me.player, me.platforms);
 	me.game.physics.arcade.collide(me.player, me.platforms2);
 	me.game.physics.arcade.collide(me.player, me.platforms3);
@@ -176,6 +180,7 @@ Main.prototype = {
 	game.physics.arcade.overlap(me.player, blocks3, hitBlock3, null, this);
 	
 	
+	//Gameover handling for block collision
 	function hitBlock(block) {
 		block.kill();
 		game.sound.stopAll();
@@ -194,14 +199,14 @@ Main.prototype = {
 	}
 
  
-    //Check if the player is touching the bottom
+    //Check if the player is touching the bottom, also gameover
     if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
 		game.sound.stopAll();
         me.gameOver();
     }
 	
 	
-	//Make the player go left
+	//Make the player go left, right, up, down
 	if(me.cursors.left.isDown){
 	  me.player.animations.play('left');
 		me.player.body.velocity.x = -600;
@@ -222,14 +227,14 @@ Main.prototype = {
  
 	},
 	
-
+	//Gameover
 	gameOver: function(){
 		var me = this;
 		this.game.state.start('GameOver');
 	},
 
 	
-	
+	//functions for adding tiles, one for each colour
 	addTile1: function(x, y){
  
     var me = this;
@@ -333,7 +338,8 @@ Main.prototype = {
     tile6.checkWorldBounds = true;
     tile6.outOfBoundsKill = true;    
   },
-  
+ 
+//function to randomize platform colour, randomnly call one of colour platform functions 
 addPlatformx: function(y){ 
 	var me = this;
 	var numberx;
@@ -523,12 +529,14 @@ addPlatformx: function(y){
 	  },
 	  
 addBlocks: function(){
+	
+	//404 errors
 	for (var i = 0; i < 5; i++)
 	{
 		//  Create a block inside of the 'blocks' group
 		var block = blocks.create(i * (Math.random()*2000), 0, 'block');
 
-		//  Let gravity do its thing
+		//  gravity of block
 		block.body.gravity.y = 200 + 400 *Math.random();
 		
 		//collision
@@ -539,13 +547,14 @@ addBlocks: function(){
 	
 
 	}
-		
+	
+	//Bug blocks	
 	for (var i = 0; i < 5; i++)
 	{
 		//  Create a block inside of the 'blocks' group
 		var block2 = blocks2.create(i * (Math.random()*2000) , 0, 'block2');
 
-		//  Let gravity do its thing
+		//  gravity of block
 		block2.body.gravity.y = 200 + 400 *Math.random();
 		
 		//collision
@@ -556,13 +565,13 @@ addBlocks: function(){
 
 	}
 		
-	//  Here we'll create 7 of them evenly spaced apart
+	//Seg fault blocks
 	for (var i = 0; i < 4; i++)
 	{
 		//  Create a block inside of the 'blocks' group
 		var block3 = blocks3.create(i * ( Math.random()*2000), 0, 'block3');
 
-		//  Let gravity do its thing
+		//  gravity of block
 		block3.body.gravity.y = 200 + 400 *Math.random();
 		
 		//collision
@@ -614,7 +623,7 @@ createPlayer: function(){
  
  
 },
- 
+//create score display
 createScore: function(){
  
     var me = this;
@@ -627,7 +636,7 @@ createScore: function(){
  
 },
 
- 
+ //function to add 1 to score, called when platforms created.
 incrementScore: function(){
  
     var me = this;
