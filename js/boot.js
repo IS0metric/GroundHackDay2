@@ -10,6 +10,8 @@ Boot.prototype = {
 	
   	create: function(){
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		
+		// upon starting, preloads the game's assets
 		this.game.state.start("Preload");
 	}
 }
